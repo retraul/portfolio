@@ -1,0 +1,3293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kulinerdotcom - Jelajahi Kelezatan Masakan Indonesia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #f39c12;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 30px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .carousel {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+            width: 80%;
+        }
+
+        .carousel-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e67e22;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background-color: white;
+        }
+
+        /* Search Section */
+        .search-section {
+            background-color: white;
+            padding: 30px 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-input {
+            width: 70%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+        }
+
+        .search-btn {
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Food Categories */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .category-content {
+            padding: 20px;
+        }
+
+        .category-content h3 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .category-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Popular Recipes */
+        .recipes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .recipe-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .recipe-content {
+            padding: 20px;
+        }
+
+        .recipe-content h3 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .recipe-rating {
+            color: var(--secondary-color);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: white;
+            padding: 60px 0;
+        }
+
+        .testimonial-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Recipe Page Styles */
+        .recipe-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .recipe-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .recipe-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .recipe-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .recipe-info h1 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .recipe-meta-detail {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .recipe-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+        }
+
+        .recipe-description {
+            margin-bottom: 20px;
+        }
+
+        .recipe-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .recipe-ingredients, .recipe-instructions {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+
+        .recipe-ingredients h2, .recipe-instructions h2 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .ingredients-list {
+            list-style: none;
+        }
+
+        .ingredients-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .ingredients-list li:before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .instructions-list {
+            counter-reset: step-counter;
+            list-style: none;
+        }
+
+        .instructions-list li {
+            counter-increment: step-counter;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .instructions-list li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 20px;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .instruction-image {
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .instruction-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Blog Styles */
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .blog-post {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .blog-post-content {
+            padding: 25px;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .blog-post-excerpt {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-widget {
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .sidebar-widget h3 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .sidebar-widget h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+
+        .category-list a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .category-list a:hover {
+            color: var(--primary-color);
+        }
+
+        .category-count {
+            background-color: #f0f0f0;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .recent-posts {
+            list-style: none;
+        }
+
+        .recent-posts li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 15px;
+        }
+
+        .recent-posts li:last-child {
+            border-bottom: none;
+        }
+
+        .recent-post-img {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+        }
+
+        .recent-post-content h4 {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .recent-post-content h4 a {
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .recent-post-content h4 a:hover {
+            color: var(--primary-color);
+        }
+
+        .recent-post-date {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Restaurant Page Styles */
+        .restaurant-hero {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .restaurant-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .restaurant-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+            display: flex;
+            align-items: flex-end;
+            padding: 40px;
+        }
+
+        .restaurant-hero-content {
+            color: white;
+            width: 100%;
+        }
+
+        .restaurant-hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .restaurant-info {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .restaurant-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .restaurant-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rating-stars {
+            color: var(--secondary-color);
+        }
+
+        .restaurant-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .restaurant-description {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .restaurant-description h2 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .restaurant-menu {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .menu-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .menu-tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            transition: var(--transition);
+        }
+
+        .menu-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .menu-items {
+            display: none;
+        }
+
+        .menu-items.active {
+            display: block;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .menu-item-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .menu-item-price {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .restaurant-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .restaurant-map {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .restaurant-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .restaurant-hours {
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .restaurant-hours h3 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 500;
+        }
+
+        .time {
+            color: #666;
+        }
+
+        .restaurant-reservation {
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .restaurant-reservation h3 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Category Page Styles */
+        .category-header {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .category-header h1 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .category-header p {
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .filter-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Community Forum Styles */
+        .forum-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 40px;
+        }
+
+        .forum-categories {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+
+        .forum-categories h2 {
+            margin-bottom: 25px;
+            color: var(--dark-color);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .forum-category-card {
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .forum-category-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .forum-category-icon {
+            font-size: 30px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .forum-category-title {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .forum-category-stats {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .forum-posts {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .forum-post {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .forum-post:last-child {
+            border-bottom: none;
+        }
+
+        .forum-post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .forum-post-title {
+            font-size: 18px;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .forum-post-title:hover {
+            color: var(--primary-color);
+        }
+
+        .forum-post-meta {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .forum-post-excerpt {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .forum-post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .forum-post-stats {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .forum-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .create-post-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .create-post-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Contact Page Styles */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-info h2 {
+            margin-bottom: 25px;
+            color: var(--dark-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .contact-details p {
+            color: #666;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-form h2 {
+            margin-bottom: 25px;
+            color: var(--dark-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-map {
+            grid-column: 1 / -1;
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            height: 400px;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Promotion Page Styles */
+        .promotion-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .promotion-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .promotion-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .promotion-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .timer-block {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            min-width: 80px;
+        }
+
+        .timer-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .timer-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .promotions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .promotion-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .promotion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .promotion-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .promotion-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .promotion-content {
+            padding: 25px;
+        }
+
+        .promotion-title {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .promotion-description {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .promotion-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .promotion-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .discounted-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+        }
+
+        .newsletter-btn {
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #ccc;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .recipe-detail, .blog-container, .restaurant-content, .contact-container, .forum-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+                width: 100%;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .carousel-content h1 {
+                font-size: 2rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .promotion-timer {
+                flex-wrap: wrap;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--primary-color);
+            animation: spin 1s ease infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-left: 4px solid #2ecc71;
+        }
+
+        .notification.error {
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .notification-icon {
+            font-size: 20px;
+        }
+
+        .notification.success .notification-icon {
+            color: #2ecc71;
+        }
+
+        .notification.error .notification-icon {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-utensils"></i>
+                    Kulinerdotcom
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#" data-page="home">Beranda</a></li>
+                        <li><a href="#" data-page="recipes">Resep</a></li>
+                        <li><a href="#" data-page="popular">Makanan Terpopuler</a></li>
+                        <li><a href="#" data-page="blog">Blog</a></li>
+                        <li><a href="#" data-page="restaurants">Restoran</a></li>
+                        <li><a href="#" data-page="categories">Kategori</a></li>
+                        <li><a href="#" data-page="community">Komunitas</a></li>
+                        <li><a href="#" data-page="contact">Kontak</a></li>
+                        <li><a href="#" data-page="promotions">Promosi</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="notification-icon fas fa-check-circle"></i>
+        <div class="notification-message"></div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="carousel">
+                <div class="carousel-item active">
+                    <img src="https://www.astronauts.id/blog/wp-content/uploads/2023/03/Resep-Rendang-Daging-Sapi-Untuk-Lebaran-Gurih-dan-Nikmat.jpg" alt="Rendang">
+                    <div class="carousel-content">
+                        <h1>Nikmati Kelezatan Rendang Padang</h1>
+                        <p>Daging empuk dengan bumbu khas yang meresap sempurna</p>
+                        <a href="#" class="btn">Lihat Resep</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Sate_Ponorogo.jpg" alt="Sate">
+                    <div class="carousel-content">
+                        <h1>Sate Khas Indonesia</h1>
+                        <p>Berbagai jenis sate dari seluruh nusantara dengan cita rasa yang unik</p>
+                        <a href="#" class="btn">Jelajahi</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://i0.wp.com/resepkoki.id/wp-content/uploads/2018/01/Resep-Gado-Gado-Padang.jpg?fit=1536%2C1419&ssl=1" alt="Gado-gado">
+                    <div class="carousel-content">
+                        <h1>Gado-gado Sehat dan Bergizi</h1>
+                        <p>Sayuran segar dengan bumbu kacang yang lezat</p>
+                        <a href="#" class="btn">Coba Sekarang</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <span class="carousel-dot active" data-slide="0"></span>
+                <span class="carousel-dot" data-slide="1"></span>
+                <span class="carousel-dot" data-slide="2"></span>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Cari resep atau makanan favorit Anda...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i> Cari
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Tentang Kuliner Nusantara</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 40px; color: #666;">
+                    Kuliner Nusantara adalah platform digital yang menghadirkan kekayaan kuliner Indonesia dari berbagai daerah. 
+                    Kami menyediakan resep autentik, informasi restoran terbaik, dan komunitas bagi pecinta kuliner untuk berbagi pengalaman.
+                </p>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Kategori Makanan</h2>
+                <div class="categories">
+                    <div class="category-card" data-category="traditional">
+                        <img src="https://cdn-brilio-net.akamaized.net/news/2019/11/05/173525/1200xauto-20-resep-makanan-khas-daerah-mudah-dibuat-191105e-rev1.jpg" alt="Makanan Tradisional" class="category-img">
+                        <div class="category-content">
+                            <h3>Makanan Tradisional</h3>
+                            <p>Jelajahi berbagai masakan tradisional dari seluruh Indonesia</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="healthy">
+                        <img src="https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2021/06/05235325/menu-sehat.jpg.webp" alt="Makanan Sehat" class="category-img">
+                        <div class="category-content">
+                            <h3>Makanan Sehat</h3>
+                            <p>Pilihan makanan bergizi untuk gaya hidup sehat</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="vegan">
+                        <img src="https://asset.kompas.com/crops/5ryfMT8KH2t2S9HiR_GCr2BUpjE=/73x33:953x620/1200x800/data/photo/2021/11/06/61862eeee47d8.jpg" alt="Makanan Vegan" class="category-img">
+                        <div class="category-content">
+                            <h3>Makanan Vegan</h3>
+                            <p>Masakan lezat tanpa produk hewani</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="dessert">
+                        <img src="https://asset.kompas.com/crops/1mpDWvxMzGD33hxdxJZYIfcRUVw=/4x535:828x1085/1200x800/data/photo/2020/06/19/5eec61f73e72a.jpeg" alt="Dessert" class="category-img">
+                        <div class="category-content">
+                            <h3>Dessert</h3>
+                            <p>Manisnya hidangan penutup khas Indonesia</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Recipes Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Resep Terpopuler</h2>
+                <div class="recipes">
+                    <div class="recipe-card">
+                        <img src="https://asset.kompas.com/crops/3xYktcut3GtTLSvS9iNgqM4e380=/0x0:1000x667/1200x800/data/photo/2023/05/06/645677f368fc1.jpg" alt="Nasi Goreng" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3>Nasi Goreng Spesial</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 30 menit</span>
+                                <span><i class="far fa-user"></i> Sedang</span>
+                            </div>
+                            <div class="recipe-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(245)</span>
+                            </div>
+                            <p>Nasi goreng dengan bumbu rahasia yang membuatnya spesial</p>
+                            <a href="#" class="btn">Lihat Resep</a>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://asset-2.tribunnews.com/tribunnews/foto/bank/images/ayam-taliwang.jpg" alt="Ayam Bakar" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3>Ayam Bakar Taliwang</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 60 menit</span>
+                                <span><i class="far fa-user"></i> Sulit</span>
+                            </div>
+                            <div class="recipe-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(189)</span>
+                            </div>
+                            <p>Ayam bakar khas Lombok dengan bumbu khas yang pedas dan gurih</p>
+                            <a href="#" class="btn">Lihat Resep</a>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/07/17043644/Praktis-dan-Simpel-Ini-Resep-Soto-Ayam-Lamongan-yang-Menggugah-Selera-.jpg" alt="Soto Ayam" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3>Soto Ayam Lamongan</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 45 menit</span>
+                                <span><i class="far fa-user"></i> Sedang</span>
+                            </div>
+                            <div class="recipe-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(167)</span>
+                            </div>
+                            <p>Soto ayam dengan kuah kuning yang segar dan koya yang gurih</p>
+                            <a href="#" class="btn">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Apa Kata Mereka</h2>
+                <div class="testimonial-container">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Website ini sangat membantu saya dalam menemukan resep-resep masakan Indonesia yang otentik. Langkah-langkahnya jelas dan mudah diikuti!</p>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/seed/user1/100/100.jpg" alt="User" class="author-img">
+                            <div class="author-info">
+                                <h4>Siti Nurhaliza</h4>
+                                <p>Ibu Rumah Tangga</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Saya menemukan banyak restoran baru melalui rekomendasi di website ini. Review-nya jujur dan membantu saya memilih tempat makan yang tepat.</p>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/seed/user2/100/100.jpg" alt="User" class="author-img">
+                            <div class="author-info">
+                                <h4>Budi Santoso</h4>
+                                <p>Food Blogger</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Komunitas di sini sangat aktif dan ramah. Saya bisa berbagi tips memasak dan mendapatkan masukan dari para ahli kuliner lainnya.</p>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/seed/user3/100/100.jpg" alt="User" class="author-img">
+                            <div class="author-info">
+                                <h4>Andi Wijaya</h4>
+                                <p>Chef Profesional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Recipe Page -->
+    <div id="recipes" class="page">
+        <section class="section">
+            <div class="container">
+                <div class="recipe-detail">
+                    <dRendangiv class="recipe-image">
+                        <img src="https://asset.kompas.com/crops/QsUYn6p5xK4DsivCrxa0_TXdjuk=/10x36:890x623/1200x800/data/photo/2023/03/25/641e5ef63dea4.jpg" alt=" Padang">
+                    </div>
+                    <div class="recipe-info">
+                        <h1>Rendang Padang Asli</h1>
+                        <div class="recipe-meta-detail">
+                            <div class="recipe-meta-item">
+                                <i class="far fa-clock"></i>
+                                <span>4 jam</span>
+                            </div>
+                            <div class="recipe-meta-item">
+                                <i class="far fa-user"></i>
+                                <span>Sulit</span>
+                            </div>
+                            <div class="recipe-meta-item">
+                                <i class="far fa-chart-bar"></i>
+                                <span>8 porsi</span>
+                            </div>
+                        </div>
+                        <div class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(325 ulasan)</span>
+                        </div>
+                        <p class="recipe-description">
+                            Rendang adalah masakan daging dengan bumbu rempah-rempah yang khas. 
+                            Proses memasaknya yang lama membuat bumbu meresap sempurna ke dalam daging, 
+                            menghasilkan cita rasa yang gurih dan pedas yang khas.
+                        </p>
+                        <div class="recipe-actions">
+                            <button class="btn">
+                                <i class="far fa-heart"></i> Simpan ke Favorit
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-share-alt"></i> Bagikan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recipe-ingredients">
+                    <h2>Bahan-bahan</h2>
+                    <ul class="ingredients-list">
+                        <li>1 kg daging sapi, potong sesuai selera</li>
+                        <li>2 liter santan dari 2 butir kelapa</li>
+                        <li>5 lembar daun jeruk</li>
+                        <li>3 lembar daun salam</li>
+                        <li>2 batang serai, memarkan</li>
+                        <li>2 cm lengkuas, memarkan</li>
+                        <li>Garam secukupnya</li>
+                        <li>Gula merah secukupnya</li>
+                        <li>Minyak goreng untuk menumis</li>
+                    </ul>
+                    <h3 style="margin-top: 30px; margin-bottom: 15px;">Bumbu Halus:</h3>
+                    <ul class="ingredients-list">
+                        <li>10 siung bawang merah</li>
+                        <li>8 siung bawang putih</li>
+                        <li>15 buah cabai merah keriting</li>
+                        <li>10 buah cabai rawit (sesuai selera)</li>
+                        <li>5 butir kemiri, sangrai</li>
+                        <li>2 cm jahe</li>
+                        <li>2 cm kunyit</li>
+                        <li>1 sdt ketumbar bubuk</li>
+                    </ul>
+                </div>
+
+                <div class="recipe-instructions">
+                    <h2>Cara Memasak</h2>
+                    <ol class="instructions-list">
+                        <li>
+                            <p>Haluskan semua bumbu halus menggunakan blender atau ulekan. Sisihkan.</p>
+                        </li>
+                        <li>
+                            <p>Panaskan minyak goreng dalam wajan besar, tumis bumbu halus bersama daun jeruk, daun salam, serai, dan lengkuas hingga harum.</p>
+                            <div class="instruction-image">
+                                <img src="https://oxone-world.com/wp-content/uploads/2022/03/minyak-goreng-hitam-id.quora_.com_.jpg" alt="Tumis Bumbu">
+                            </div>
+                        </li>
+                        <li>
+                            <p>Masukkan potongan daging sapi, aduk hingga berubah warna.</p>
+                        </li>
+                        <li>
+                            <p>Tuang santan secara perlahan sambil diaduk agar tidak pecah. Tambahkan garam dan gula merah secukupnya.</p>
+                            <div class="instruction-image">
+                                <img src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1604041366/attached_image/tak-berbahaya-kenali-manfaat-santan-lebih-dekat.jpg" alt="Masak dengan Santan">
+                            </div>
+                        </li>
+                        <li>
+                            <p>Masak dengan api kecil ssesekali diaduk agar tidak gosong di bagian bawah. Masak hingga santan mengental dan bumbu meresap ke dalam daging (sekitar 3-4 jam).</p>
+                        </li>
+                        <li>
+                            <p>Koreksi rasa, tambahkan garam atau gula jika diperlukan. Masak hingga kuah benar-benar kering dan berminyak.</p>
+                            <div class="instruction-image">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZbWMYDezgJW2WQT1KiS1VTy9SsiTxykJ5zg&s" alt="Rendang Jadi">
+                            </div>
+                        </li>
+                        <li>
+                            <p>Rendang siap disajikan dengan nasi hangat. Nikmati!</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Blog Page -->
+    <div id="blog" class="page">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Artikel Kuliner Terkini</h2>
+                <div class="blog-container">
+                    <div class="blog-posts">
+                        <article class="blog-post">
+                            <img src="https://swarakaltim.com/wp-content/uploads/2023/12/IMG-20231209-WA0006.jpg" alt="Trends Kuliner 2023" class="blog-post-img">
+                            <div class="blog-post-content">
+                                <div class="blog-post-meta">
+                                    <span><i class="far fa-calendar"></i> 15 Mei 2023</span>
+                                    <span><i class="far fa-user"></i> Admin</span>
+                                    <span><i class="far fa-comment"></i> 24 Komentar</span>
+                                </div>
+                                <h3>Tren Kuliner Indonesia 2023 yang Wajib Dicoba</h3>
+                                <p class="blog-post-excerpt">
+                                    Dunia kuliner Indonesia terus berkembang dengan munculnya tren baru yang menarik. 
+                                    Dari fusion food hingga kebangkitan masakan tradisional, berikut adalah tren kuliner yang sedang populer tahun ini...
+                                </p>
+                                <a href="#" class="btn">Baca Selengkapnya</a>
+                            </div>
+                        </article>
+                        <article class="blog-post">
+                            <img src="https://ik.imagekit.io/dcjlghyytp1/https://sayurbox-blog-stage.s3.amazonaws.com/uploads/2020/07/fried-2509089_1920.jpg?tr=f-auto" alt="Tips Memasak" class="blog-post-img">
+                            <div class="blog-post-content">
+                                <div class="blog-post-meta">
+                                    <span><i class="far fa-calendar"></i> 10 Mei 2023</span>
+                                    <span><i class="far fa-user"></i> Chef Amanda</span>
+                                    <span><i class="far fa-comment"></i> 18 Komentar</span>
+                                </div>
+                                <h3>5 Tips Memasak Nasi Goreng yang Anti Gagal</h3>
+                                <p class="blog-post-excerpt">
+                                    Nasi goreng adalah salah satu hidangan favorit banyak orang. Namun, membuat nasi goreng yang enak dan tidak lembek ternyata ada triknya. 
+                                    Simak tips dari chef profesional berikut ini...
+                                </p>
+                                <a href="#" class="btn">Baca Selengkapnya</a>
+                            </div>
+                        </article>
+                        <article class="blog-post">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Sebuah_restoran_Padang_di_Jakarta.jpg" alt="Review Restoran" class="blog-post-img">
+                            <div class="blog-post-content">
+                                <div class="blog-post-meta">
+                                    <span><i class="far fa-calendar"></i> 5 Mei 2023</span>
+                                    <span><i class="far fa-user"></i> Foodie Hunter</span>
+                                    <span><i class="far fa-comment"></i> 32 Komentar</span>
+                                </div>
+                                <h3>Review: Restoran Padang Terbaik di Jakarta</h3>
+                                <p class="blog-post-excerpt">
+                                    Jakarta memiliki banyak pilihan restoran Padang, namun mana yang terbaik? 
+                                    Kami telah mencoba beberapa restoran Padang terkenal dan berikut adalah review lengkapnya...
+                                </p>
+                                <a href="#" class="btn">Baca Selengkapnya</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="blog-sidebar">
+                        <div class="sidebar-widget">
+                            <h3>Kategori</h3>
+                            <ul class="category-list">
+                                <li>
+                                    <a href="#">Tips Memasak</a>
+                                    <span class="category-count">12</span>
+                                </li>
+                                <li>
+                                    <a href="#">Review Restoran</a>
+                                    <span class="category-count">8</span>
+                                </li>
+                                <li>
+                                    <a href="#">Makanan Sehat</a>
+                                    <span class="category-count">6</span>
+                                </li>
+                                <li>
+                                    <a href="#">Tren Kuliner</a>
+                                    <span class="category-count">9</span>
+                                </li>
+                                <li>
+                                    <a href="#">Resep Spesial</a>
+                                    <span class="category-count">15</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h3>Artikel Terpopuler</h3>
+                            <ul class="recent-posts">
+                                <li>
+                                    <img src="https://jajabakes.com/wp-content/uploads/2019/05/how-to-make-sambal-matah-4-500x500.jpg" alt="Popular Post" class="recent-post-img">
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">Rahasia Membuat Sambal Matah yang Enak</a></h4>
+                                        <div class="recent-post-date">28 April 2023</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="https://kelilingjogja.id/wp-content/uploads/2022/02/Sate-Klathak-Pak-Bari.webp" alt="Popular Post" class="recent-post-img">
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">5 Warung Sate Terenak di Yogyakarta</a></h4>
+                                        <div class="recent-post-date">25 April 2023</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="https://img-cdn.medkomtek.com/_3J37O0Ir10R-jP3692k0pzYH9A=/510x395/smart/filters:quality(100):format(webp)/article/C2ZGXR8JUgvW0Odj5LdDV/original/031828700_1574544083-Fakta-Sehat-Kerupuk-si-Renyah-Peningkat-Selera-Makan-By-Setyawan-Utomo-Hadi-Shutterstock_1419245504.jpg" alt="Popular Post" class="recent-post-img">
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">Cara Membuat Kerupuk yang Renyah</a></h4>
+                                        <div class="recent-post-date">22 April 2023</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h3>Newsletter</h3>
+                            <p>Dapatkan resep dan tips kuliner terbaru langsung di inbox Anda</p>
+                            <form class="newsletter-form">
+                                <input type="email" class="newsletter-input" placeholder="Email Anda">
+                                <button type="submit" class="newsletter-btn">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Restaurant Page -->
+    <div id="restaurants" class="page">
+        <section class="section">
+            <div class="container">
+                <div class="restaurant-hero">
+                    <img src="https://cdn.linkumkm.id/uploads/library/6/5/2/9/5/65295_840x576.jpg" alt="Restaurant">
+                    <div class="restaurant-hero-overlay">
+                        <div class="restaurant-hero-content">
+                            <h1>Restoran Padang Sederhana</h1>
+                            <div class="restaurant-info">
+                                <div class="restaurant-info-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Jakarta Pusat</span>
+                                </div>
+                                <div class="restaurant-info-item">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Padang, Minangkabau</span>
+                                </div>
+                                <div class="restaurant-info-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$$</span>
+                                </div>
+                            </div>
+                            <div class="restaurant-rating">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>4.5 (328 ulasan)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="restaurant-content">
+                    <div class="restaurant-main">
+                        <div class="restaurant-description">
+                            <h2>Tentang Restoran</h2>
+                            <p>
+                                Restoran Padang Sederhana telah berdiri sejak tahun 1972 dan menjadi salah satu restoran Padang tertua di Jakarta. 
+                                Dengan resep turun-temurun yang dijaga keasliannya, restoran ini menawarkan pengalaman kuliner otentik Minangkabau yang tak terlupakan.
+                            </p>
+                            <p>
+                                Suasana restoran yang sederhana namun nyaman membuat para pelanggan merasa seperti makan di rumah sendiri. 
+                                Dengan kapasitas 100 orang, restoran ini cocok untuk makan bersama keluarga atau teman-teman.
+                            </p>
+                            <p>
+                                Restoran Padang Sederhana juga menyediakan layanan katering untuk berbagai acara seperti rapat, arisan, atau pesta keluarga.
+                            </p>
+                        </div>
+
+                        <div class="restaurant-menu">
+                            <h2>Menu</h2>
+                            <div class="menu-tabs">
+                                <button class="menu-tab active" data-tab="makanan">Makanan</button>
+                                <button class="menu-tab" data-tab="minuman">Minuman</button>
+                                <button class="menu-tab" data-tab="dessert">Dessert</button>
+                            </div>
+                            <div class="menu-items active" id="makanan">
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Rendang</h4>
+                                        <p>Daging sapi dengan bumbu rempah khas Padang</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 45.000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Ayam Pop</h4>
+                                        <p>Ayam dengan kuah kuning yang gurih</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 35.000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Dendeng Balado</h4>
+                                        <p>Daging sapi kering dengan sambal balado</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 40.000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Gulai Kambing</h4>
+                                        <p>Kambing muda dengan kuah gulai yang kaya rempah</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 50.000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Ikan Bakar</h4>
+                                        <p>Ikan segar dengan bumbu khas Padang</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 55.000</div>
+                                </div>
+                            </div>
+                            <div class="menu-items" id="minuman">
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Es Teh Manis</h4>
+                                        <p>Teh manis dingin yang menyegarkan</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 8.000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Es Jeruk</h4>
+                                        <p>Jus jeruk segar</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 12.000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Es Campur</h4>
+                                        <p>Campuran buah segar dengan susu dan sirup</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 15.000</div>
+                                </div>
+                            </div>
+                            <div class="menu-items" id="dessert">
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Kue Pisang</h4>
+                                        <p>Kue tradisional dari pisang</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 10.000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h4>Lemang</h4>
+                                        <p>Lemang ketan dengan kelapa parut</p>
+                                    </div>
+                                    <div class="menu-item-price">Rp 15.000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="restaurant-sidebar">
+                        <div class="restaurant-map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37737.13044176305!2d106.80138318953088!3d-6.180624999325646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f424373fee11%3A0xcb1462bba1cc3cc3!2sRestoran%20Sederhana%20Padang!5e0!3m2!1sen!2sid!4v1761014716924!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+
+                        <div class="restaurant-hours">
+                            <h3>Jam Buka</h3>
+                            <ul class="hours-list">
+                                <li>
+                                    <span class="day">Senin - Jumat</span>
+                                    <span class="time">10:00 - 22:00</span>
+                                </li>
+                                <li>
+                                    <span class="day">Sabtu</span>
+                                    <span class="time">10:00 - 23:00</span>
+                                </li>
+                                <li>
+                                    <span class="day">Minggu</span>
+                                    <span class="time">10:00 - 22:00</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="restaurant-reservation">
+                            <h3>Reservasi</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Nama</label>
+                                    <input type="text" id="name" class="form-control" placeholder="Nama Anda">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Nomor Telepon</label>
+                                    <input type="tel" id="phone" class="form-control" placeholder="Nomor telepon">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date">Tanggal</label>
+                                    <input type="date" id="date" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="time">Waktu</label>
+                                    <input type="time" id="time" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="guests">Jumlah Tamu</label>
+                                    <select id="guests" class="form-control">
+                                        <option>1 orang</option>
+                                        <option>2 orang</option>
+                                        <option>3 orang</option>
+                                        <option>4 orang</option>
+                                        <option>5+ orang</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn" style="width: 100%;">Pesan Sekarang</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Categories Page -->
+    <div id="categories" class="page">
+        <section class="section">
+            <div class="container">
+                <div class="category-header">
+                    <h1>Kategori Makanan</h1>
+                    <p>Jelajahi berbagai kategori makanan dari seluruh Indonesia</p>
+                </div>
+
+                <div class="filter-container">
+                    <h3>Filter Berdasarkan:</h3>
+                    <div class="filter-options">
+                        <button class="filter-btn active">Semua</button>
+                        <button class="filter-btn">Makanan Berat</button>
+                        <button class="filter-btn">Camilan</button>
+                        <button class="filter-btn">Dessert</button>
+                        <button class="filter-btn">Minuman</button>
+                        <button class="filter-btn">Vegan</button>
+                        <button class="filter-btn">Halal</button>
+                    </div>
+                </div>
+
+                <div class="categories">
+                    <div class="category-card" data-category="traditional">
+                        <img src="https://cdn-brilio-net.akamaized.net/news/2019/11/05/173525/1200xauto-20-resep-makanan-khas-daerah-mudah-dibuat-191105e-rev1.jpg" alt="Makanan Tradisional" class="category-img">
+                        <div class="category-content">
+                            <h3>Makanan Tradisional</h3>
+                            <p>Jelajahi berbagai masakan tradisional dari seluruh Indonesia yang kaya akan rempah dan cita rasa</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="healthy">
+                        <img src="https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2021/06/31094133/Makanan-sehat.jpg" alt="Makanan Sehat" class="category-img">
+                        <div class="category-content">
+                            <h3>Makanan Sehat</h3>
+                            <p>Pilihan makanan bergizi untuk gaya hidup sehat tanpa mengorbankan rasa</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="vegan">
+                        <img src="https://sehatindofarm.com/wp-content/uploads/2023/03/12-Menu-Makanan-Vegetarian-yang-Enak-dan-Mudah-Didapat.webp" alt="Makanan Vegan" class="category-img">
+                        <div class="category-content">
+                            <h3>Makanan Vegan</h3>
+                            <p>Masakan lezat tanpa produk hewani yang ramah lingkungan</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="dessert">
+                        <img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Ice-Cream-Cookie-Dessert_EXPS_FT24_33498_EC_070924_9.jpg" alt="Dessert" class="category-img">
+                        <div class="category-content">
+                            <h3>Dessert</h3>
+                            <p>Manisnya hidangan penutup khas Indonesia yang memanjakan lidah</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="street-food">
+                        <img src="https://dash.vivawisata.com/assets/file/posts/POSTS691a7a8fa9db531342c4eb66d5d12ba9.jpg" alt="Street Food" class="category-img">
+                        <div class="category-content">
+                            <h3>Street Food</h3>
+                            <p>Jajanan kaki lima yang lezat dan ikonik dari berbagai daerah</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="seafood">
+                        <img src="https://britneybreaksbread.com/wp-content/uploads/2022/06/seafood-boil.jpg" alt="Seafood" class="category-img">
+                        <div class="category-content">
+                            <h3>Seafood</h3>
+                            <p>Hidangan laut segar dengan bumbu khas nusantara</p>
+                            <a href="#" class="btn">Lihat Semua</a>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title" style="margin-top: 60px;">Resep Berdasarkan Kategori</h2>
+                <div class="recipes">
+                    <div class="recipe-card">
+                        <img src="https://asset.kompas.com/crops/cnjJ8a2_lEamvP1OkUClN1Oi0Dg=/100x67:900x600/1200x800/data/photo/2021/02/21/603203834f00f.jpg" alt="Nasi Uduk" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3>Nasi Uduk Betawi</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 60 menit</span>
+                                <span><i class="far fa-user"></i> Sedang</span>
+                            </div>
+                            <div class="recipe-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(112)</span>
+                            </div>
+                            <p>Nasi gurih khas Betawi dengan lauk pelengkap</p>
+                            <a href="#" class="btn">Lihat Resep</a>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://assets.unileversolutions.com/recipes-v2/230915.jpg" alt="Sayur Lodeh" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3>Sayur Lodeh Jawa</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 45 menit</span>
+                                <span><i class="far fa-user"></i> Mudah</span>
+                            </div>
+                            <div class="recipe-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(98)</span>
+                            </div>
+                            <p>Sayuran segar dengan kuah santan yang gurih</p>
+                            <a href="#" class="btn">Lihat Resep</a>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/effffee6-3e1d-46c5-b8e1-25d8f1720003_Go-Biz_20231105_192326.jpeg" alt="Pecel" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3>Pecel Madiun</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 30 menit</span>
+                                <span><i class="far fa-user"></i> Mudah</span>
+                            </div>
+                            <div class="recipe-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(156)</span>
+                            </div>
+                            <p>Sayuran rebus dengan bumbu kacang khas Madiun</p>
+                            <a href="#" class="btn">Lihat Resep</a>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://tradisikuliner.com/wp-content/uploads/2025/03/bakso-malang-or-bakwan-malang-meatball-soup-2024-06-05-20-03-21-utc_11zon-scaled.webp" alt="Bakso" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3>Bakso Malang</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 90 menit</span>
+                                <span><i class="far fa-user"></i> Sedang</span>
+                            </div>
+                            <div class="recipe-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(203)</span>
+                            </div>
+                            <p>Bakso daging sapi dengan kuah kaldu yang gurih</p>
+                            <a href="#" class="btn">Lihat Resep</a>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://cdn-1.timesmedia.co.id/images/2022/12/21/gudeg-2.jpg" alt="Gudeg" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3>Gudeg Jogja</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 180 menit</span>
+                                <span><i class="far fa-user"></i> Sulit</span>
+                            </div>
+                            <div class="recipe-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(187)</span>
+                            </div>
+                            <p>Nangka muda dengan kuah santan dan bumbu khas Jogja</p>
+                            <a href="#" class="btn">Lihat Resep</a>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Kerak_telor_Betawi.jpg" alt="Kerak Telor" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3>Kerak Telor Betawi</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> 45 menit</span>
+                                <span><i class="far fa-user"></i> Sedang</span>
+                            </div>
+                            <div class="recipe-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(124)</span>
+                            </div>
+                            <p>Jajanan khas Betawi dari telur bebek dan beras</p>
+                            <a href="#" class="btn">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Community Page -->
+    <div id="community" class="page">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Komunitas Kuliner</h2>
+                <div class="forum-container">
+                    <div class="forum-main">
+                        <div class="forum-categories">
+                            <h2>Kategori Forum</h2>
+                            <div class="category-grid">
+                                <div class="forum-category-card">
+                                    <div class="forum-category-icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <h3 class="forum-category-title">Resep</h3>
+                                    <p>Bagikan dan temukan resep-resep baru</p>
+                                    <div class="forum-category-stats">
+                                        <span><i class="far fa-file"></i> 245 Topik</span>
+                                        <span><i class="far fa-comment"></i> 1.823 Balasan</span>
+                                    </div>
+                                </div>
+                                <div class="forum-category-card">
+                                    <div class="forum-category-icon">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <h3 class="forum-category-title">Tips Memasak</h3>
+                                    <p>Tips dan trik untuk memasak lebih baik</p>
+                                    <div class="forum-category-stats">
+                                        <span><i class="far fa-file"></i> 132 Topik</span>
+                                        <span><i class="far fa-comment"></i> 956 Balasan</span>
+                                    </div>
+                                </div>
+                                <div class="forum-category-card">
+                                    <div class="forum-category-icon">
+                                        <i class="fas fa-store"></i>
+                                    </div>
+                                    <h3 class="forum-category-title">Tempat Makan</h3>
+                                    <p>Rekomendasi dan review tempat makan</p>
+                                    <div class="forum-category-stats">
+                                        <span><i class="far fa-file"></i> 189 Topik</span>
+                                        <span><i class="far fa-comment"></i> 1.432 Balasan</span>
+                                    </div>
+                                </div>
+                                <div class="forum-category-card">
+                                    <div class="forum-category-icon">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                    <h3 class="forum-category-title">Diskusi Umum</h3>
+                                    <p>Obrolan seputar dunia kuliner</p>
+                                    <div class="forum-category-stats">
+                                        <span><i class="far fa-file"></i> 98 Topik</span>
+                                        <span><i class="far fa-comment"></i> 654 Balasan</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="forum-posts">
+                            <h2>Postingan Terbaru</h2>
+                            <div class="forum-post">
+                                <div class="forum-post-header">
+                                    <a href="#" class="forum-post-title">Bagaimana cara membuat rendang yang empuk dan tidak keras?</a>
+                                </div>
+                                <div class="forum-post-meta">
+                                    <span><i class="far fa-user"></i> Siti Rahayu</span>
+                                    <span><i class="far fa-folder"></i> Resep</span>
+                                    <span><i class="far fa-clock"></i> 2 jam yang lalu</span>
+                                </div>
+                                <p class="forum-post-excerpt">
+                                    Saya sudah beberapa kali mencoba membuat rendang, tapi hasilnya selalu keras. 
+                                    Ada yang bisa kasih tips agar dagingnya empuk dan bumbunya meresap sempurna?
+                                </p>
+                                <div class="forum-post-footer">
+                                    <div class="forum-post-stats">
+                                        <span><i class="far fa-eye"></i> 145</span>
+                                        <span><i class="far fa-comment"></i> 12</span>
+                                        <span><i class="far fa-thumbs-up"></i> 8</span>
+                                    </div>
+                                    <a href="#" class="btn">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                            <div class="forum-post">
+                                <div class="forum-post-header">
+                                    <a href="#" class="forum-post-title">Rekomendasi warung sate enak di Bandung</a>
+                                </div>
+                                <div class="forum-post-meta">
+                                    <span><i class="far fa-user"></i> Budi Santoso</span>
+                                    <span><i class="far fa-folder"></i> Tempat Makan</span>
+                                    <span><i class="far fa-clock"></i> 5 jam yang lalu</span>
+                                </div>
+                                <p class="forum-post-excerpt">
+                                    Akhir pekan ini saya akan ke Bandung, ada yang bisa rekomendasikan warung sate yang enak dan autentik?
+                                </p>
+                                <div class="forum-post-footer">
+                                    <div class="forum-post-stats">
+                                        <span><i class="far fa-eye"></i> 98</span>
+                                        <span><i class="far fa-comment"></i> 23</span>
+                                        <span><i class="far fa-thumbs-up"></i> 15</span>
+                                    </div>
+                                    <a href="#" class="btn">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                            <div class="forum-post">
+                                <div class="forum-post-header">
+                                    <a href="#" class="forum-post-title">Tips agar sambal tidak cepat basi</a>
+                                </div>
+                                <div class="forum-post-meta">
+                                    <span><i class="far fa-user"></i> Andi Wijaya</span>
+                                    <span><i class="far fa-folder"></i> Tips Memasak</span>
+                                    <span><i class="far fa-clock"></i> 1 hari yang lalu</span>
+                                </div>
+                                <p class="forum-post-excerpt">
+                                    Saya suka membuat sambal dalam jumlah banyak, tapi seringkali cepat basi. Ada tips agar sambal bisa tahan lebih lama?
+                                </p>
+                                <div class="forum-post-footer">
+                                    <div class="forum-post-stats">
+                                        <span><i class="far fa-eye"></i> 234</span>
+                                        <span><i class="far fa-comment"></i> 18</span>
+                                        <span><i class="far fa-thumbs-up"></i> 25</span>
+                                    </div>
+                                    <a href="#" class="btn">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                            <div class="forum-post">
+                                <div class="forum-post-header">
+                                    <a href="#" class="forum-post-title">Hasil coba resep nasi goreng dari website ini</a>
+                                </div>
+                                <div class="forum-post-meta">
+                                    <span><i class="far fa-user"></i> Rina Permata</span>
+                                    <span><i class="far fa-folder"></i> Resep</span>
+                                    <span><i class="far fa-clock"></i> 2 hari yang lalu</span>
+                                </div>
+                                <p class="forum-post-excerpt">
+                                    Kemarin saya coba resep nasi goreng spesial dari website ini dan hasilnya enak banget! 
+                                    Ini foto hasilnya...
+                                </p>
+                                <div class="forum-post-footer">
+                                    <div class="forum-post-stats">
+                                        <span><i class="far fa-eye"></i> 312</span>
+                                        <span><i class="far fa-comment"></i> 34</span>
+                                        <span><i class="far fa-thumbs-up"></i> 56</span>
+                                    </div>
+                                    <a href="#" class="btn">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="forum-sidebar">
+                        <button class="create-post-btn">
+                            <i class="fas fa-plus"></i> Buat Postingan Baru
+                        </button>
+
+                        <div class="sidebar-widget">
+                            <h3>Topik Populer</h3>
+                            <ul class="recent-posts">
+                                <li>
+                                    <img src="https://picsum.photos/seed/topic1/150/150.jpg" alt="Topic" class="recent-post-img">
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">Resep Soto Ayam yang Enak</a></h4>
+                                        <div class="recent-post-date">234 balasan</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="https://picsum.photos/seed/topic2/150/150.jpg" alt="Topic" class="recent-post-img">
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">Restoran Padang Terbaik di Jakarta</a></h4>
+                                        <div class="recent-post-date">189 balasan</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="https://picsum.photos/seed/topic3/150/150.jpg" alt="Topic" class="recent-post-img">
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">Cara Membuat Kerupuk yang Renyah</a></h4>
+                                        <div class="recent-post-date">156 balasan</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h3>Anggota Aktif</h3>
+                            <ul class="recent-posts">
+                                <li>
+                                    <img src="https://picsum.photos/seed/member1/150/150.jpg" alt="Member" class="recent-post-img">
+                                    <div class="recent-post-content">
+                                        <h4>Chef Amanda</h4>
+                                        <div class="recent-post-date">324 postingan</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="https://picsum.photos/seed/member2/150/150.jpg" alt="Member" class="recent-post-img">
+                                    <div class="recent-post-content">
+                                        <h4>Foodie Hunter</h4>
+                                        <div class="recent-post-date">256 postingan</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="https://picsum.photos/seed/member3/150/150.jpg" alt="Member" class="recent-post-img">
+                                    <div class="recent-post-content">
+                                        <h4>Home Cook Mom</h4>
+                                        <div class="recent-post-date">198 postingan</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Hubungi Kami</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Informasi Kontak</h2>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Alamat</h3>
+                                <p>Jl. Kuliner Nusantara No. 123<br>Jakarta Pusat, 10110</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Telepon</h3>
+                                <p>+62 21 1234 5678</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>WhatsApp</h3>
+                                <p>+62 812 3456 7890</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p>info@kulinernusantara.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Jam Operasional</h3>
+                                <p>Senin - Jumat: 09:00 - 18:00<br>Sabtu: 09:00 - 15:00</p>
+                            </div>
+                        </div>
+                        <h3 style="margin-top: 30px; margin-bottom: 15px;">Ikuti Kami</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h2>Kirim Pesan</h2>
+                        <form id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">Nama Depan</label>
+                                    <input type="text" id="firstName" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Nama Belakang</label>
+                                    <input type="text" id="lastName" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Nomor Telepon</label>
+                                <input type="tel" id="phone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subjek</label>
+                                <input type="text" id="subject" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Pesan</label>
+                                <textarea id="message" class="form-control" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sMonas!5e0!3m2!1sen!2sid!4v1659286429231!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Promotions Page -->
+    <div id="promotions" class="page">
+        <section class="promotion-hero">
+            <div class="container">
+                <h1>Penawaran Spesial</h1>
+                <p>Dapatkan diskon dan penawaran menarik dari restoran dan produk kuliner pilihan</p>
+                <div class="promotion-timer">
+                    <div class="timer-block">
+                        <div class="timer-value" id="days">05</div>
+                        <div class="timer-label">Hari</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-value" id="hours">12</div>
+                        <div class="timer-label">Jam</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-value" id="minutes">34</div>
+                        <div class="timer-label">Menit</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-value" id="seconds">56</div>
+                        <div class="timer-label">Detik</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Promo Terkini</h2>
+                <div class="promotions">
+                    <div class="promotion-card">
+                        <div class="promotion-badge">50% OFF</div>
+                        <img src="https://www.maggi.id/sites/default/files/Article%20Website%20Images%204%20Agustus_1500x700_4.png" alt="Promotion" class="promotion-img">
+                        <div class="promotion-content">
+                            <h3 class="promotion-title">Paket Makan Siang Spesial</h3>
+                            <p class="promotion-description">
+                                Dapatkan diskon 50% untuk paket makan siang di Restoran Padang Sederhana. 
+                                Berlaku untuk 2 orang minimum.
+                            </p>
+                            <div class="promotion-footer">
+                                <div class="promotion-price">
+                                    <span class="original-price">Rp 100.000</span>
+                                    <span class="discounted-price">Rp 50.000</span>
+                                </div>
+                                <a href="#" class="btn">Ambil Promo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion-card">
+                        <div class="promotion-badge">BUY 1 GET 1</div>
+                        <img src="https://asset.kompas.com/crops/9iB_ruTEMU7otPYnbCNVng8zhrQ=/0x0:4939x3293/1200x800/data/photo/2022/09/25/63300cfd403f0.jpg" alt="Promotion" class="promotion-img">
+                        <div class="promotion-content">
+                            <h3 class="promotion-title">Buy 1 Get 1 Es Teh Manis</h3>
+                            <p class="promotion-description">
+                                Beli 1 es teh manis, dapatkan 1 gratis di Warung Sate Pak Haji. 
+                                Berlaku setiap hari Senin - Jumat.
+                            </p>
+                            <div class="promotion-footer">
+                                <div class="promotion-price">
+                                    <span class="original-price">Rp 10.000</span>
+                                    <span class="discounted-price">Rp 5.000</span>
+                                </div>
+                                <a href="#" class="btn">Ambil Promo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion-card">
+                        <div class="promotion-badge">30% OFF</div>
+                        <img src="https://richcreme.com/wp-content/uploads/2022/11/18.RCWC-Nastar-Crumble-Dessert-Box.jpg" alt="Promotion" class="promotion-img">
+                        <div class="promotion-content">
+                            <h3 class="promotion-title">Diskon 30% Semua Menu Dessert</h3>
+                            <p class="promotion-description">
+                                Nikmati diskon 30% untuk semua menu dessert di Kafe Manis. 
+                                Berlaku hingga akhir bulan.
+                            </p>
+                            <div class="promotion-footer">
+                                <div class="promotion-price">
+                                    <span class="original-price">Rp 35.000</span>
+                                    <span class="discounted-price">Rp 24.500</span>
+                                </div>
+                                <a href="#" class="btn">Ambil Promo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion-card">
+                        <div class="promotion-badge">FREE DELIVERY</div>
+                        <img src="https://www.sapx.id/blog/wp-content/uploads/2025/05/gratis-ongkir.png" alt="Promotion" class="promotion-img">
+                        <div class="promotion-content">
+                            <h3 class="promotion-title">Gratis Ongkir untuk Pesanan Rp 100.000+</h3>
+                            <p class="promotion-description">
+                                Pesan melalui aplikasi kami dan dapatkan gratis ongkir untuk minimum pembelian Rp 100.000.
+                            </p>
+                            <div class="promotion-footer">
+                                <div class="promotion-price">
+                                    <span class="original-price">Rp 15.000</span>
+                                    <span class="discounted-price">GRATIS</span>
+                                </div>
+                                <a href="#" class="btn">Ambil Promo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion-card">
+                        <div class="promotion-badge">HAPPY HOUR</div>
+                        <img src="https://img.freepik.com/free-vector/happy-hour-lettering-chalkboard_23-2148265361.jpg" alt="Promotion" class="promotion-img">
+                        <div class="promotion-content">
+                            <h3 class="promotion-title">Happy Hour 50% Off Minuman</h3>
+                            <p class="promotion-description">
+                                Dapatkan diskon 50% untuk semua minuman di Bar & Grill setiap hari Senin - Kamis, pukul 17:00 - 19:00.
+                            </p>
+                            <div class="promotion-footer">
+                                <div class="promotion-price">
+                                    <span class="original-price">Rp 50.000</span>
+                                    <span class="discounted-price">Rp 25.000</span>
+                                </div>
+                                <a href="#" class="btn">Ambil Promo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion-card">
+                        <div class="promotion-badge">WEEKEND SPECIAL</div>
+                        <img src="https://seroja.id/wp-content/uploads/2024/08/paket-nasi-box.jpg" alt="Promotion" class="promotion-img">
+                        <div class="promotion-content">
+                            <h3 class="promotion-title">Paket Family Weekend</h3>
+                            <p class="promotion-description">
+                                Paket makan untuk 4 orang dengan harga spesial hanya di akhir pekan. 
+                                Termasuk 4 menu utama, 4 minuman, dan 1 dessert.
+                            </p>
+                            <div class="promotion-footer">
+                                <div class="promotion-price">
+                                    <span class="original-price">Rp 300.000</span>
+                                    <span class="discounted-price">Rp 200.000</span>
+                                </div>
+                                <a href="#" class="btn">Ambil Promo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tentang Kuliner Nusantara</h3>
+                    <p>
+                        Kuliner Nusantara adalah platform digital yang menghadirkan kekayaan kuliner Indonesia dari berbagai daerah. 
+                        Kami menyediakan resep autentik, informasi restoran terbaik, dan komunitas bagi pecinta kuliner.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Link Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#">Resep</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Restoran</a></li>
+                        <li><a href="#">Komunitas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kategori</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Makanan Tradisional</a></li>
+                        <li><a href="#">Makanan Sehat</a></li>
+                        <li><a href="#">Makanan Vegan</a></li>
+                        <li><a href="#">Dessert</a></li>
+                        <li><a href="#">Minuman</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Dapatkan resep dan tips kuliner terbaru langsung di inbox Anda</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Email Anda">
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Kuliner Nusantara. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a[data-page]');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // Show target page
+                    document.getElementById(targetPage).classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('show');
+            });
+            
+            // Carousel functionality
+            const carouselItems = document.querySelectorAll('.carousel-item');
+            const carouselDots = document.querySelectorAll('.carousel-dot');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                carouselItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+                carouselDots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                carouselItems[index].classList.add('active');
+                carouselDots[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            carouselDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    showSlide(slideIndex);
+                });
+            });
+            
+            // Auto-advance carousel
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % carouselItems.length;
+                showSlide(currentSlide);
+            }, 5000);
+            
+            // Menu tabs functionality
+            const menuTabs = document.querySelectorAll('.menu-tab');
+            const menuItems = document.querySelectorAll('.menu-items');
+            
+            menuTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    menuTabs.forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    menuItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+            
+            // Filter buttons functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Here you would implement actual filtering logic
+                    showNotification('Filter diterapkan: ' + this.textContent, 'success');
+                });
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Here you would implement actual form submission
+                    showNotification('Pesan Anda telah terkirim! Kami akan segera menghubungi Anda.', 'success');
+                    this.reset();
+                });
+            }
+            
+            // Newsletter form submission
+            const newsletterForms = document.querySelectorAll('.newsletter-form');
+            
+            newsletterForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Here you would implement actual newsletter subscription
+                    showNotification('Terima kasih telah berlangganan newsletter kami!', 'success');
+                    this.reset();
+                });
+            });
+            
+            // Reservation form submission
+            const reservationForm = document.querySelector('.restaurant-reservation form');
+            
+            if (reservationForm) {
+                reservationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Here you would implement actual reservation submission
+                    showNotification('Reservasi Anda telah dikonfirmasi! Kami menunggu kedatangan Anda.', 'success');
+                    this.reset();
+                });
+            }
+            
+            // Notification function
+            function showNotification(message, type) {
+                const notification = document.getElementById('notification');
+                const notificationMessage = notification.querySelector('.notification-message');
+                const notificationIcon = notification.querySelector('.notification-icon');
+                
+                notificationMessage.textContent = message;
+                notification.className = 'notification show ' + type;
+                
+                if (type === 'success') {
+                    notificationIcon.className = 'notification-icon fas fa-check-circle';
+                } else if (type === 'error') {
+                    notificationIcon.className = 'notification-icon fas fa-exclamation-circle';
+                }
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Countdown timer for promotions
+            function updateCountdown() {
+                const daysElement = document.getElementById('days');
+                const hoursElement = document.getElementById('hours');
+                const minutesElement = document.getElementById('minutes');
+                const secondsElement = document.getElementById('seconds');
+                
+                if (daysElement && hoursElement && minutesElement && secondsElement) {
+                    // Set target date (5 days from now)
+                    const targetDate = new Date();
+                    targetDate.setDate(targetDate.getDate() + 5);
+                    
+                    const now = new Date();
+                    const difference = targetDate - now;
+                    
+                    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                    
+                    daysElement.textContent = days < 10 ? '0' + days : days;
+                    hoursElement.textContent = hours < 10 ? '0' + hours : hours;
+                    minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
+                    secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
+                }
+            }
+            
+            // Update countdown every second
+            setInterval(updateCountdown, 1000);
+            updateCountdown(); // Initial call
+            
+            // Save to favorites functionality
+            const saveButtons = document.querySelectorAll('.recipe-actions .btn');
+            
+            saveButtons.forEach(button => {
+                if (button.textContent.includes('Simpan ke Favorit')) {
+                    button.addEventListener('click', function() {
+                        const icon = this.querySelector('i');
+                        
+                        if (icon.classList.contains('far')) {
+                            icon.classList.remove('far');
+                            icon.classList.add('fas');
+                            showNotification('Resep telah ditambahkan ke favorit!', 'success');
+                        } else {
+                            icon.classList.remove('fas');
+                            icon.classList.add('far');
+                            showNotification('Resep telah dihapus dari favorit!', 'success');
+                        }
+                    });
+                }
+            });
+            
+            // Share functionality
+            const shareButtons = document.querySelectorAll('.recipe-actions .btn-secondary');
+            
+            shareButtons.forEach(button => {
+                if (button.textContent.includes('Bagikan')) {
+                    button.addEventListener('click', function() {
+                        // In a real application, this would open a share dialog
+                        showNotification('Link resep telah disalin!', 'success');
+                    });
+                }
+            });
+            
+            // Category card click functionality
+            const categoryCards = document.querySelectorAll('.category-card');
+            
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.querySelector('h3').textContent;
+                    showNotification('Membuka kategori: ' + category, 'success');
+                    
+                    // In a real application, this would navigate to the category page
+                    const categoriesPage = document.getElementById('categories');
+                    const pages = document.querySelectorAll('.page');
+                    
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    categoriesPage.classList.add('active');
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Recipe card click functionality
+            const recipeCards = document.querySelectorAll('.recipe-card');
+            
+            recipeCards.forEach(card => {
+                const viewRecipeBtn = card.querySelector('.btn');
+                
+                if (viewRecipeBtn && viewRecipeBtn.textContent.includes('Lihat Resep')) {
+                    viewRecipeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const recipeName = card.querySelector('h3').textContent;
+                        showNotification('Membuka resep: ' + recipeName, 'success');
+                        
+                        // In a real application, this would navigate to the recipe detail page
+                        const recipesPage = document.getElementById('recipes');
+                        const pages = document.querySelectorAll('.page');
+                        
+                        pages.forEach(page => {
+                            page.classList.remove('active');
+                        });
+                        
+                        recipesPage.classList.add('active');
+                        window.scrollTo(0, 0);
+                    });
+                }
+            });
+            
+            // Blog post click functionality
+            const blogPosts = document.querySelectorAll('.blog-post');
+            
+            blogPosts.forEach(post => {
+                const readMoreBtn = post.querySelector('.btn');
+                
+                if (readMoreBtn && readMoreBtn.textContent.includes('Baca Selengkapnya')) {
+                    readMoreBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const postTitle = post.querySelector('h3').textContent;
+                        showNotification('Membuka artikel: ' + postTitle, 'success');
+                        
+                        // In a real application, this would navigate to the blog post detail page
+                    });
+                }
+            });
+            
+            // Forum post click functionality
+            const forumPosts = document.querySelectorAll('.forum-post');
+            
+            forumPosts.forEach(post => {
+                const viewMoreBtn = post.querySelector('.btn');
+                
+                if (viewMoreBtn && viewMoreBtn.textContent.includes('Lihat Selengkapnya')) {
+                    viewMoreBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const postTitle = post.querySelector('.forum-post-title').textContent;
+                        showNotification('Membuka postingan: ' + postTitle, 'success');
+                        
+                        // In a real application, this would navigate to the forum post detail page
+                    });
+                }
+            });
+            
+            // Promotion card click functionality
+            const promotionCards = document.querySelectorAll('.promotion-card');
+            
+            promotionCards.forEach(card => {
+                const claimBtn = card.querySelector('.btn');
+                
+                if (claimBtn && claimBtn.textContent.includes('Ambil Promo')) {
+                    claimBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const promotionTitle = card.querySelector('.promotion-title').textContent;
+                        showNotification('Promo berhasil diambil: ' + promotionTitle, 'success');
+                        
+                        // In a real application, this would process the promotion claim
+                    });
+                }
+            });
+            
+            // Create post button functionality
+            const createPostBtn = document.querySelector('.create-post-btn');
+            
+            if (createPostBtn) {
+                createPostBtn.addEventListener('click', function() {
+                    showNotification('Fitur pembuatan postingan akan segera hadir!', 'success');
+                    
+                    // In a real application, this would open a form to create a new post
+                });
+            }
+        });
+    </script>
+</body>
+</html>
